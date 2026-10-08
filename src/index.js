@@ -26,7 +26,21 @@ function Menu() {
 }
 
 function Footer() {
-    return <footer>Copyright {new Date().getFullYear()}</footer>;
+    const hour = new Date().getHours();
+    const jamBuka = 12;
+    const jamTutup = 22;
+
+    if (hour <= jamBuka || hour >= jamTutup) {
+        alert("Warung Mang Racing tutup sekarang");
+    } else {
+        alert("Warung Mang Racing buka sekarang");
+    }
+
+    return (
+        <footer>
+            {new Date().getFullYear()} Warung Mang Racing | jam buka: {jamBuka} - jam tutup: {jamTutup}
+        </footer>
+    );
 }
 
 function Food() {
