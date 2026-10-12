@@ -1,9 +1,11 @@
 import React from "react";
 import reactDom from "react-dom/client";
 
+import "./index.css";
+
 function App() {
     return (
-        <div>
+        <div className="container">
             <Header />
             <Menu />
             <Footer />
@@ -17,11 +19,11 @@ function Header() {
 
 function Menu() {
     return (
-        <div>
+        <main className="menu">
             <h2>Menu</h2>
             <Food />
             <Food />
-        </div>
+        </main>
     );
 }
 
@@ -37,7 +39,7 @@ function Footer() {
     }
 
     return (
-        <footer>
+        <footer className="footer">
             {new Date().getFullYear()} Warung Mang Racing | jam buka: {jamBuka} - jam tutup: {jamTutup}
         </footer>
     );
