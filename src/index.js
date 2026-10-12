@@ -20,18 +20,21 @@ function Header() {
 }
 
 function Menu() {
+    // const foods = [];
     const foods = data;
     const numFoods = foods.length;
 
     return (
         <main className="menu">
             <h2>Menu Kita</h2>
-            {numFoods > 0 && (
+            {numFoods > 0 ? (
                 <ul className="foods">
                     {data.map((food) => (
                         <Food key={food.nama} foodObj={food} />
                     ))}
                 </ul>
+            ) : (
+                <p>Kosong. Besok dateng lagi</p>
             )}
         </main>
     );
@@ -39,13 +42,13 @@ function Menu() {
 
 function Footer() {
     const hour = new Date().getHours();
-    const jamBuka = 9;
+    const jamBuka = 12;
     const jamTutup = 22;
     const isOpen = hour >= jamBuka && hour <= jamTutup;
 
     return (
         <footer className="footer">
-            {isOpen && (
+            {isOpen ? (
                 <div className="order">
                     <p>
                         {new Date().getFullYear()} Warung Mang Racing | jam buka: {jamBuka} - jam tutup: {jamTutup}
@@ -53,6 +56,10 @@ function Footer() {
 
                     <button className="btn">Order</button>
                 </div>
+            ) : (
+                <p>
+                    Warung Mang Racing sedang tutup. Mohon datang di sekitar jam {jamBuka} - {jamTutup}
+                </p>
             )}
         </footer>
     );
