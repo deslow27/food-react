@@ -1,5 +1,6 @@
 import React from "react";
 import reactDom from "react-dom/client";
+import data from "./data.js";
 
 import "./index.css";
 
@@ -14,15 +15,19 @@ function App() {
 }
 
 function Header() {
-    return <h1>Warung Mang Racing</h1>;
+    const style = { color: "red", fontSize: "30px" };
+    return <h1 style={style}>Warung Mang Racing</h1>;
 }
 
 function Menu() {
     return (
         <main className="menu">
-            <h2>Menu</h2>
-            <Food />
-            <Food />
+            <h2>Menu Kita</h2>
+            <ul className="foods">
+                {data.map((food) => (
+                    <Food key={food.nama} foodObj={food} />
+                ))}
+            </ul>
         </main>
     );
 }
@@ -45,13 +50,18 @@ function Footer() {
     );
 }
 
-function Food() {
+function Food(props) {
     return (
-        <div>
-            <img src="food/soto-betawi.jpg" alt="Soto Betawi" width={100} height={70} />
-            <h2>Soto Betawi</h2>
-            <p>Soto betawi dari Jakarta</p>
-        </div>
+        <li className="food">
+            <div>
+                <img src={props.foodObj.foto} alt={props.foodObj.nama} width={100} height={70} />
+            </div>
+            <div>
+                <h3>{props.foodObj.nama}</h3>
+                <p>{props.foodObj.deskripsi}</p>
+                <span>Rp {props.foodObj.harga}</span>
+            </div>
+        </li>
     );
 }
 
