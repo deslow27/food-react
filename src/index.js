@@ -20,32 +20,40 @@ function Header() {
 }
 
 function Menu() {
+    const foods = data;
+    const numFoods = foods.length;
+
     return (
         <main className="menu">
             <h2>Menu Kita</h2>
-            <ul className="foods">
-                {data.map((food) => (
-                    <Food key={food.nama} foodObj={food} />
-                ))}
-            </ul>
+            {numFoods > 0 && (
+                <ul className="foods">
+                    {data.map((food) => (
+                        <Food key={food.nama} foodObj={food} />
+                    ))}
+                </ul>
+            )}
         </main>
     );
 }
 
 function Footer() {
     const hour = new Date().getHours();
-    const jamBuka = 12;
+    const jamBuka = 9;
     const jamTutup = 22;
-
-    if (hour <= jamBuka || hour >= jamTutup) {
-        alert("Warung Mang Racing tutup sekarang");
-    } else {
-        alert("Warung Mang Racing buka sekarang");
-    }
+    const isOpen = hour >= jamBuka && hour <= jamTutup;
 
     return (
         <footer className="footer">
-            {new Date().getFullYear()} Warung Mang Racing | jam buka: {jamBuka} - jam tutup: {jamTutup}
+            {isOpen && (
+                <div className="order">
+                    <p>
+                        {new Date().getFullYear()} Warung Mang Racing | jam buka: {jamBuka} - jam tutup: {jamTutup}
+                    </p>
+
+                    <button className="btn">Order</button>
+                </div>
+            )}
         </footer>
     );
 }
