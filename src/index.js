@@ -28,11 +28,14 @@ function Menu() {
         <main className="menu">
             <h2>Menu Kita</h2>
             {numFoods > 0 ? (
-                <ul className="foods">
-                    {data.map((food) => (
-                        <Food key={food.nama} foodObj={food} />
-                    ))}
-                </ul>
+                <>
+                    <p>Aneka makanan Indonesia yang disajikan oleh warteg mang racing sebagai pemenuhan makanan kesehatan yang diperlukan dalma kehidupan sehari-hari</p>
+                    <ul className="foods">
+                        {data.map((food) => (
+                            <Food key={food.nama} foodObj={food} />
+                        ))}
+                    </ul>
+                </>
             ) : (
                 <p>Kosong. Besok dateng lagi</p>
             )}
