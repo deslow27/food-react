@@ -83,14 +83,14 @@ function FoodClosedHours({ jamBuka, jamTutup }) {
 function Food(props) {
     const { nama, deskripsi, harga, foto, stok } = props.foodObj;
     return (
-        <li className="food">
+        <li className={`food` + (stok ? "" : " sold-out")}>
             <div>
                 <img src={foto} alt={nama} width={100} height={70} />
             </div>
             <div>
                 <h3>{nama}</h3>
                 <p>{deskripsi}</p>
-                <span>Rp {harga}</span>
+                <span>{stok ? `Rp ${harga}` : "Habis"}</span>
             </div>
         </li>
     );
