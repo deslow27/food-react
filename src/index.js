@@ -42,25 +42,37 @@ function Menu() {
 
 function Footer() {
     const hour = new Date().getHours();
-    const jamBuka = 12;
+    const jamBuka = 23;
     const jamTutup = 22;
     const isOpen = hour >= jamBuka && hour <= jamTutup;
 
+    if (isOpen) {
+        return <FoodOpenHours jamBuka={jamBuka} jamTutup={jamTutup} />;
+    } else {
+        return <FoodClosedHours jamBuka={jamBuka} jamTutup={jamTutup} />;
+    }
+}
+
+function FoodOpenHours(props) {
     return (
         <footer className="footer">
-            {isOpen ? (
-                <div className="order">
-                    <p>
-                        {new Date().getFullYear()} Warung Mang Racing | jam buka: {jamBuka} - jam tutup: {jamTutup}
-                    </p>
-
-                    <button className="btn">Order</button>
-                </div>
-            ) : (
+            <div className="order">
                 <p>
-                    Warung Mang Racing sedang tutup. Mohon datang di sekitar jam {jamBuka} - {jamTutup}
+                    {new Date().getFullYear()} Warung Mang Racing | jam buka: {props.jamBuka} - jam tutup: {props.jamTutup}
                 </p>
-            )}
+
+                <button className="btn">Order</button>
+            </div>
+        </footer>
+    );
+}
+
+function FoodClosedHours(props) {
+    return (
+        <footer className="footer">
+            <p>
+                Warung Mang Racing sedang tutup. Mohon datang di sekitar jam {props.jamBuka} - {props.jamTutup}
+            </p>
         </footer>
     );
 }
